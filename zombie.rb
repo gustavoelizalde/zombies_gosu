@@ -1,11 +1,12 @@
 class Zombie
-  def initialize(x, y)
+  def initialize(x, y, speed = 1)
     @x = x
     @y = y
     @directions = ["left", "right", "up", "down"]
     @direction = "right"
     @image = Gosu::Image.new("zombie.png")
     @steps = 0
+    @speed = speed
   end
 
   def update
@@ -26,13 +27,13 @@ class Zombie
 
   def walk
     if @direction == "right"
-      @x += 1
+      @x += @speed
     elsif @direction == "left"
-      @x -= 1
+      @x -= @speed
     elsif @direction == "up"
-      @y -= 1
+      @y -= @speed
     elsif @direction == "down"
-      @y += 1
+      @y += @speed
     end
 
     if @steps >= 50
@@ -40,7 +41,7 @@ class Zombie
       @steps = 0
     end
 
-    @steps += 1
+    @steps += @speed
 
   end
 end
